@@ -58,9 +58,6 @@ const data = [
         $('main .tweets-container').append(element);
       });
   }
-
-
-
 //   <article>
 //   <header >
 //       <div class="img-tweet-container">
@@ -90,6 +87,7 @@ const data = [
     let imgValue = tweet.user.avatars.small;
     let usename = tweet.user.handle;
     let content = tweet.content.text;
+    let date = new Date(tweet.created_at);
 
 
     // create main all elements
@@ -97,7 +95,7 @@ const data = [
     let header = $('<header>');
     let tweetTextContent = $('<p>').text(content);
     let tweetFooter = $('<footer>');
-    let footerTextContent = $('<p>');
+    let footerTextContent = $('<p>').text(date);
     let imgContainer = $('<div>').addClass('img-tweet-container');
     let img = $('<img>').attr('src',imgValue);
     let headerTitleContainer =  $('<div>').addClass('text-header-content');
