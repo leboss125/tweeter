@@ -1,0 +1,24 @@
+.new-tweet {
+    margin: auto;
+    padding: 10px;
+    background: rgb(238, 237, 237);
+}
+
+.new-tweet h2 {
+    border-bottom: 3px solid black;
+    padding-bottom: 8px;
+}
+
+.new-tweet form textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+form input {
+    width: 100px;
+}
+
+form .counter {
+    float: right;
+}
