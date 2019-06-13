@@ -55,7 +55,7 @@ const data = [
   function renderTweets(tweets) {
       tweets.forEach(posts => {
           let element = createTweetElement(posts);
-        $('main .tweets-container').append(element);
+        $('main .tweets-container').prepend(element);
       });
   }
 //   <article>
@@ -89,7 +89,6 @@ const data = [
     let content = tweet.content.text;
     let date = new Date(tweet.created_at);
 
-
     // create main all elements
     let $tweet = $('<article>');
     let header = $('<header>');
@@ -102,7 +101,6 @@ const data = [
     let headerTitleTextContent = $('<h2>').text(name);
     let avatarContainer = $('<div>').addClass('avatar-name');
     let avatarTextContent = $('<strong>').text(usename);
-
     // append all elements and return value 
    
     imgContainer
@@ -135,9 +133,28 @@ const data = [
   }
 
 
-
   $(document).ready(function(){
-    renderTweets(data);
+    function loadTweets(){
+      $.ajax('/tweets',{method:'GET'})
+      .then(result => renderTweets(result))
+    };
+    $('form').on('submit', function(e){
+      e.preventDefault();
+      let formData = $(e.target).find('textarea').val()
+      if(formData === '' || formData === null){
+        alert('please enter something');
+        return
+      }
+      if(formData.length > 140){
+        alert('your tweet is greater then 140')
+        return
+      }else{
+          $.ajax({ method: 'POST', url: '/tweets', data:{text:formData}})
+          .done(data => console.log(data));
+          $('form').reset()
+      }
+    });
+    loadTweets();
     });
   
   
