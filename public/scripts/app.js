@@ -51,37 +51,19 @@ const data = [
   ];
 
 
-  
+  // loop in to the object and append into the main
   function renderTweets(tweets) {
       tweets.forEach(posts => {
           let element = createTweetElement(posts);
         $('main .tweets-container').prepend(element);
       });
   }
-//   <article>
-//   <header >
-//       <div class="img-tweet-container">
-//           <img src="" alt="">
-//         </div>
-//         <div class="text-header-content">
-//             <h2>Lorem, ipsum.</h2>
-//         </div>
-//         <div class="avatar-name">
-//           <strong>@Avatar name</strong>
-//         </div>
-//   </header>
-//   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod sapiente sint veniam consequuntur, adipisci at, reprehenderit nesciunt temporibus ullam non, nobis porro.</p>
-//   <footer>
-//       <p>10 days ago</p>
-//   </footer>
-// </article>
 
 
 
 
-
+  // create html elements
   function createTweetElement(tweet) {
-
     // tweet content 
     let name = tweet.user.name;
     let imgValue = tweet.user.avatars.small;
@@ -138,6 +120,10 @@ const data = [
       $.ajax('/tweets',{method:'GET'})
       .then(result => renderTweets(result))
     };
+
+
+
+
     $('form').on('submit', function(e){
       e.preventDefault();
       let formData = $(e.target).find('textarea').val()
@@ -150,12 +136,10 @@ const data = [
         return
       }else{
           $.ajax({ method: 'POST', url: '/tweets', data:{text:formData}})
-          .done(data => console.log(data));
-          $('form').reset()
+            .done(data => loadTweets());
+          document.querySelector('form').reset();
+          
       }
     });
     loadTweets();
     });
-  
-  
-  
