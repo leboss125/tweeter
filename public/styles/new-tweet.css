@@ -2,6 +2,7 @@
     margin: auto;
     padding: 10px;
     background: rgb(238, 237, 237);
+    display: none;
 }
 
 .new-tweet h2 {
@@ -13,6 +14,7 @@
     display: block;
     width: 100%;
     margin-bottom: 20px;
+    outline: none;
 }
 
 form input {

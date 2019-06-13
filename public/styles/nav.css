@@ -22,3 +22,23 @@
     position: relative;
     top:-20px; 
   }
+
+#compose{
+   margin-top:30px;
+   margin-right: 10%;
+   float: right;
+    background: rgba(124, 124, 124, 0.5);
+    border: white solid 1px;
+    color: white;
+    padding:10px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#compose:hover{
+    background: rgb(66, 47, 236);
+    border: rgb(66, 47, 236) solid 1px;
+    color: black;
+    transition: 0.7s all;
+}
+
