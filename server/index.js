@@ -24,28 +24,8 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   const DataHelpers = require("./lib/data-helpers.js")(db);
   const tweetsRoutes = require("./routes/tweets")(DataHelpers);
   app.use("/tweets", tweetsRoutes);
-  // ==> Refactored and wrapped as new, tweet-specific function:
+ 
 
-  // function getTweets(callback) {
-  //   db.collection("tweets").find().toArray(callback);
-  // }
-
-  // // ==> Later it can be invoked. Remember even if you pass
-  // //     `getTweets` to another scope, it still has closure over
-  // //     `db`, so it will still work. Yay!
-
-  // getTweets((err, tweets) => {
-  //   if (err) throw err;
-
-  //   console.log("Logging each tweet:");
-  //   for (let tweet of tweets) {
-  //     console.log(tweet);
-  //   }
-
-    
-  // });
-
-  //db.close();
 });
 
 

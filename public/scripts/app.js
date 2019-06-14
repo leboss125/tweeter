@@ -7,7 +7,14 @@
   function renderTweets(tweets) {
       tweets.forEach(posts => {
           const element = createTweetElement(posts);
+          console.log(posts)
         $('main .tweets-container').prepend(element);
+        $(element).bind('mouseover', function(){
+          element.find('.icone').addClass('visible');
+      });
+      $(element).bind('mouseout', function(){
+        element.find('.icone').removeClass('visible');
+      });
       });
   }
 
@@ -19,7 +26,7 @@
     const imgValue = tweet.user.avatars.small;
     const usename = tweet.user.handle;
     const content = tweet.content.text;
-    const date = new Date(tweet.created_at);
+    const date = new Date(tweet.created_at).toISOString().slice(0, 10);
 
     // create all elements
     const $tweet = $('<article>');
@@ -33,10 +40,21 @@
     const headerTitleTextContent = $('<h2>').text(name);
     const avatarContainer = $('<div>').addClass('avatar-name');
     const avatarTextContent = $('<strong>').text(usename);
+    const iconeContainer = $('<p>').addClass('icone');
+
+    // icones 
+    const iconeFlag = $('<i>').addClass('fab fa-font-awesome-flag');
+    const iconeRetweet = $('<i>').addClass('fas fa-retweet') ;
+    const iconeHeart = $('<i>').addClass('fas fa-heart');
     // append all elements 
    
     imgContainer
         .append(img);
+    
+      iconeContainer
+        .append(iconeFlag)
+        .append(iconeRetweet)
+        .append(iconeHeart);
 
     headerTitleContainer
         .append(headerTitleTextContent);
@@ -52,7 +70,8 @@
 
     // append element in footer 
     tweetFooter
-        .append(footerTextContent);
+        .append(footerTextContent)
+        .append(iconeContainer);
     
 
     // append all element in tweet container
@@ -99,4 +118,5 @@
       }
     });
     loadTweets();
+
     });

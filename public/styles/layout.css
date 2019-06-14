@@ -42,16 +42,12 @@ main {
   padding: 20px;
 }
 
+
 article {
   opacity: 0.6;
   padding: 1px;
 }
 
-article:hover {
-  opacity: 1.0;
-  transition: 0.5s all;
-  border: solid 1px black;
-}
 
 section {
   width: 100%;
@@ -106,6 +102,7 @@ article {
 
 article p {
   padding: 10px;
+  overflow-wrap:break-word;
 }
 
 article{
@@ -115,4 +112,25 @@ article{
 
 #showerror{
   color: red;
+}
+
+article footer{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* icone */
+
+.icone{
+  visibility: hidden;
+}
+
+.visible{
+  visibility: visible;
+}
+
+article:hover{
+  opacity: 1.0;
+  transition: 0.5s all;
+  border: solid 1px black;
 }
