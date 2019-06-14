@@ -14,7 +14,7 @@
 
 
 
-  // create html elements
+  // creates html elements
   function createTweetElement(tweet) {
     // tweet content 
     const name = tweet.user.name;
@@ -67,11 +67,13 @@
   }
 
 
+  function loadTweets(){
+    $.ajax('/tweets',{method:'GET'})
+    .then(result => renderTweets(result))
+  };
+
+
   $(document).ready(function(){
-    function loadTweets(){
-      $.ajax('/tweets',{method:'GET'})
-      .then(result => renderTweets(result))
-    };
 
     // nav button on click handler
     $('#compose').on('click', function(){
@@ -80,9 +82,7 @@
       input.select();
     })
 
-
-
-    // when form is submited
+    // When form is submited
     $('form').on('submit', function(e){
       e.preventDefault();
       const formData = $(e.target).find('textarea').val();
