@@ -12,8 +12,6 @@
   }
 
 
-
-
   // creates html elements
   function createTweetElement(tweet) {
     // tweet content 
@@ -23,7 +21,7 @@
     const content = tweet.content.text;
     const date = new Date(tweet.created_at);
 
-    // create main all elements
+    // create all elements
     const $tweet = $('<article>');
     const header = $('<header>');
     const tweetTextContent = $('<p>').text(content);
@@ -35,7 +33,7 @@
     const headerTitleTextContent = $('<h2>').text(name);
     const avatarContainer = $('<div>').addClass('avatar-name');
     const avatarTextContent = $('<strong>').text(usename);
-    // append all elements and return value 
+    // append all elements 
    
     imgContainer
         .append(img);
@@ -44,7 +42,7 @@
         .append(headerTitleTextContent);
 
     avatarContainer
-        .append(avatarTextContent)
+        .append(avatarTextContent);
     
     // append elements to header 
     header
@@ -54,7 +52,7 @@
 
     // append element in footer 
     tweetFooter
-        .append(footerTextContent)
+        .append(footerTextContent);
     
 
     // append all element in tweet container
@@ -62,16 +60,14 @@
         .append(header)
         .append(tweetTextContent)
         .append(tweetFooter);
-
-    return $tweet ;
+    // return the element constructed  " tweet html box "
+    return $tweet;
   }
-
 
   function loadTweets(){
     $.ajax('/tweets',{method:'GET'})
     .then(result => renderTweets(result))
   };
-
 
   $(document).ready(function(){
 
@@ -80,7 +76,7 @@
       $('.new-tweet').slideToggle(500);
       const input = document.querySelector('textarea');
       input.select();
-    })
+    });
 
     // When form is submited
     $('form').on('submit', function(e){
